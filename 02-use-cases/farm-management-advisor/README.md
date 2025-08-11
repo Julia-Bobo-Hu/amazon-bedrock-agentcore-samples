@@ -141,6 +141,39 @@ The system includes comprehensive debug information:
 - Gateway tool availability
 - Lambda function execution logs
 
+## Clean Up
+
+To remove all resources created by this example:
+
+### 1. Delete AgentCore Resources
+```python
+# Delete the deployed agent
+runtime.delete_agent()
+
+# Delete memory store
+memory_client.delete_memory(memory_id=MEMORY_ID)
+```
+### 2. Delete Gateway Resources
+#### Delete Lambda functions
+```python
+aws lambda delete-function --function-name plant-detection-target
+aws lambda delete-function --function-name plant-care-target
+aws lambda delete-function --function-name plant-web-search-target
+aws lambda delete-function --function-name weather-forecast-target
+aws lambda delete-function --function-name websearch-target
+
+### Delete Gateway
+aws bedrock-agentcore delete-gateway --gateway-id YOUR_GATEWAY_ID
+```
+### 3. Delete IAM Roles
+```python
+aws iam delete-role --role-name agentcore-plant-advisor-agent-langgraph-role
+aws iam delete-role --role-name agentcore-mem-plant-advisor-mem-langgraph-role
+```
+### 4. Delete ECR Repository
+```python
+aws ecr delete-repository --repository-name bedrock-agentcore-plant_advisor_agent --force
+```
 ## Contributing
 
 This project demonstrates experimental capabilities of Amazon Bedrock AgentCore. For production use:
