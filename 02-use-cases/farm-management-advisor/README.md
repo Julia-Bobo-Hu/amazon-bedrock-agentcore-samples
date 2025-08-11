@@ -8,7 +8,7 @@ A comprehensive plant health analysis system built with Amazon Bedrock AgentCore
 This project demonstrates how to build an intelligent plant health analysis system using AWS Bedrock AgentCore capabilities. The system combines plant detection, expert consultation, web search, and persistent memory to provide comprehensive plant care recommendations.
 
 ## Architecture
-![Farm Management Architecture](./Images/solution_architecture_diagram.png)
+![Farm Management Architecture](./Image/solution_architecture_diagram.png)
 
 The system consists of two main components:
 
@@ -25,7 +25,7 @@ The system consists of two main components:
 ## Key Components
 
 ### 1. Multi-Agent LangGraph Workflow
-![LangGraph Architecture](./Images/enhanced_plant_workflow.png)
+![LangGraph Architecture](./Image/enhanced_plant_workflow.png)
 - **Entry Router**: Determines if query is for analysis or history retrieval
 - **Plant Detection Agent**: Identifies plant type and health issues from images
 - **Care Agent**: Provides expert treatment advice
@@ -74,100 +74,83 @@ source .venv/bin/activate
 
 # Install dependencies
 uv add -r requirements.txt --active
+```
+### 2. Gateway Configuration (Notebook 01)
 
-2. Gateway Configuration (Notebook 01)
-Update the TAVILY_API_KEY in the notebook
+1. Update the `TAVILY_API_KEY` in the notebook
+2. Run all cells to:
+   - Create Lambda functions for plant analysis tools
+   - Set up Cognito authentication
+   - Create MCP Gateway
+   - Register Lambda functions as MCP tools
+   - Test the gateway functionality
+
+### 3. Runtime Deployment (Notebook 02)
 
 Run all cells to:
+- Load configuration from notebook 1
+- Create AgentCore Memory store
+- Deploy LangGraph workflow to AgentCore Runtime
+- Test with plant images and memory queries
 
-Create Lambda functions for plant analysis tools
+## Features
 
-Set up Cognito authentication
+- **Image-based Plant Detection**: Upload plant photos for automated species identification
+- **Health Assessment**: Detailed analysis of plant health issues and symptoms
+- **Expert Recommendations**: Comprehensive care advice based on plant type and condition
+- **Memory Integration**: Persistent storage of analysis history for tracking plant health over time
+- **Multi-modal Search**: Web search integration for latest plant care research
+- **Weather Integration**: Weather-aware plant care recommendations
+- **Scalable Architecture**: Serverless deployment with automatic scaling
 
-Create MCP Gateway
+## File Structure
 
-Register Lambda functions as MCP tools
-
-Test the gateway functionality
-
-3. Runtime Deployment (Notebook 02)
-Run all cels to: Load configuration from notebook 1
-
-Create AgentCore Memory store
-
-Deploy LangGraph workflow to AgentCore Runtime
-
-Test with plant images and memory queries
-
-Workflow Visualization
-The system follows this workflow:
-
-
-Features
-Image-based Plant Detection: Upload plant photos for automated species identification
-
-Health Assessment: Detailed analysis of plant health issues and symptoms
-
-Expert Recommendations: Comprehensive care advice based on plant type and condition
-
-Memory Integration: Persistent storage of analysis history for tracking plant health over time
-
-Multi-modal Search: Web search integration for latest plant care research
-
-Weather Integration: Weather-aware plant care recommendations
-
-Scalable Architecture: Serverless deployment with automatic scaling
-
-File Structure
-├── 01_plant_advisor_gateway.ipynb    # Gateway setup and MCP tools
+├── 01_plant_advisor_gateway.ipynb # Gateway setup and MCP tools
 ├── 02_plant_advisor_runtime_mem.ipynb # Runtime deployment with memory
-├── requirements.txt                   # Python dependencies
-├── Lambda/                           # Lambda function code
-│   ├── plant_care.py
-│   ├── plant_detection.py
-│   ├── plant_websearch.py
-│   ├── weather_forecast.py
-│   └── websearch.py
+├── requirements.txt # Python dependencies
+├── Lambda/ # Lambda function code
+│ ├── plant_care.py
+│ ├── plant_detection.py
+│ ├── plant_websearch.py
+│ ├── weather_forecast.py
+│ └── websearch.py
 ├── utils/
-│   └── utils.py                      # Utility functions
-└── sweet_potato_leaf.png            # Sample plant image
+│ └── utils.py # Utility functions
+├── Image/ # Architecture diagrams and sample images
+│ ├── solution_architecture_diagram.png
+│ ├── enhanced_plant_workflow.png
+│ └── sweet_potato_leaf.png
+└── README.md
 
-Troubleshooting
-Common Issues
-Runtime Deployment: Ensure proper IAM roles and ARM64 platform compatibility
 
-Memory Creation Errors: Ensure IAM roles have proper permissions for AgentCore Memory
+## Troubleshooting
 
-Gateway Authentication: Verify Cognito configuration and token generation
+### Common Issues
 
-Lambda Timeouts: Increase timeout settings for image processing functions
+- **Runtime Deployment**: Ensure proper IAM roles and ARM64 platform compatibility
+- **Memory Creation Errors**: Ensure IAM roles have proper permissions for AgentCore Memory
+- **Gateway Authentication**: Verify Cognito configuration and token generation
+- **Lambda Timeouts**: Increase timeout settings for image processing functions
+- **Image Size Limits**: Resize images to stay within payload limits (recommended < 1MB)
 
-Image Size Limits: Resize images to stay within payload limits (recommended < 1MB)
+### Debug Information
 
-Debug Information
 The system includes comprehensive debug information:
+- AgentCore Runtime execution logs
+- Memory operation status
+- Gateway tool availability
+- Lambda function execution logs
 
-AgentCore Runtime execution logs
+## Contributing
 
-Memory operation status
-
-Gateway tool availability
-
-Lambda function execution logs
-
-Contributing
 This project demonstrates experimental capabilities of Amazon Bedrock AgentCore. For production use:
 
-Implement proper error handling and retry logic
+- Implement proper error handling and retry logic
+- Add input validation and sanitization
+- Configure appropriate IAM permissions
+- Set up monitoring and alerting
+- Implement user authentication and authorization
 
-Add input validation and sanitization
+## License
 
-Configure appropriate IAM permissions
-
-Set up monitoring and alerting
-
-Implement user authentication and authorization
-
-License
 This project is provided for educational and experimental purposes. See the main repository license for details.
-
