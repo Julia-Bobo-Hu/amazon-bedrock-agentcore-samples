@@ -105,22 +105,24 @@ Run all cells to:
 
 ## File Structure
 
-├── 01_plant_advisor_gateway.ipynb # Gateway setup and MCP tools
+```
+├── 01_plant_advisor_gateway.ipynb     # Gateway setup and MCP tools
 ├── 02_plant_advisor_runtime_mem.ipynb # Runtime deployment with memory
-├── requirements.txt # Python dependencies
-├── Lambda/ # Lambda function code
-│ ├── plant_care.py
-│ ├── plant_detection.py
-│ ├── plant_websearch.py
-│ ├── weather_forecast.py
-│ └── websearch.py
+├── requirements.txt                    # Python dependencies
+├── Lambda/                             # Lambda function code
+│   ├── plant_care.py
+│   ├── plant_detection.py
+│   ├── plant_websearch.py
+│   ├── weather_forecast.py
+│   └── websearch.py
 ├── utils/
-│ └── utils.py # Utility functions
-├── Image/ # Architecture diagrams and sample images
-│ ├── solution_architecture_diagram.png
-│ ├── enhanced_plant_workflow.png
-│ └── sweet_potato_leaf.png
+│   └── utils.py                        # Utility functions
+├── Image/                              # Architecture diagrams and sample images
+│   ├── solution_architecture_diagram.png
+│   ├── enhanced_plant_workflow.png
+│   └── sweet_potato_leaf.png
 └── README.md
+```
 
 
 ## Troubleshooting
